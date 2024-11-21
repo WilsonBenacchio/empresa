@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Dependente</title>
+</head>
+<body>
+    <form th:object="${dependente}" action="/dependente/gravar" method="post">
+    
+        
+        <label>Funcionario</label>
+        <select th:field="*{funcionario.id}">
+            <option th:each="funcionario : ${funcionarios}" th:value="${funcionario.id}" th:text="${funcionario.nome}">
+            </option>
+        </select>
+        
+        <br/>
+        
+        
+        <label> Nome: </label>
+        <input th:field="*{nome}" />
+        <div>
+            <p th:if="${#fields.hasErrors('nome')}">Nome Obrigatório</p>
+        </div>
+        
+        <label> Email: </label>
+        <input th:field="*{email}" />
+        <div>
+            <p th:if="${#fields.hasErrors('email')}">E-mail Obrigatório</p>
+        </div>
+        
+        
+        <button type="submit">Gravar</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Funcionário</title>
+</head>
+<body>
+
+    <form th:object="${funcionario}" action="/funcionario/gravar" method="post">
+    
+        
+        <label> Nome: </label>
+        <input th:field="*{nome}" />
+        <div>
+            <p th:if="${#fields.hasErrors('nome')}">Nome obrigatório</p>
+        </div>
+        
+     
+        <label> Email: </label>
+        <input th:field="*{email}" />
+        <div>
+            <p th:if="${#fields.hasErrors('email')}">Email obrigatório</p>
+        </div>
+        
+        <button type="submit">Gravar</button>
+    
+    </form>
+    
+    <table>
+    <tr>
+        <th>Codigo</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+    </tr>
+    <tr th:each="dependente : ${funcionario.dependentes}">
+        <th th:text="${dependente.id}">Codigo</th>
+        <th th:text="${dependente.nome}">Nome</th>
+        <th th:text="${dependente.email}">Email</th>
+    </tr>
+</table>
+    
+
+</body>
+</html>
